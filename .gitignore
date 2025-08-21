@@ -1,0 +1,57 @@
+# Build artifacts and directories
+build/
+debug/
+release/
+Debug/
+Release/
+
+# CMake files
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+Testing/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+CTestTestfile.cmake
+_deps/
+CMakeUserPresets.json
+
+# C/C++ compiled files
+*.o
+*.obj
+*.a
+*.lib
+*.dll
+*.so
+*.so.*
+*.dylib
+*.exe
+*.out
+*.app
+
+# Precompiled headers
+*.gch
+*.pch
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+*.ilk
+*.map
+*.exp
+*.dwo
+
+# Dependencies
+*.d
+
+# Project specific
+.cache/
+.venv/
+compile_commands.json
+imgui.ini
+*.log
+*.tmp
+*.bak

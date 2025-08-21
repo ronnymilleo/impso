@@ -1,0 +1,35 @@
+// Windows Resource File for Digital Control Application
+// This embeds the application icon into the executable
+
+// Icon with ID 1 is used as the application icon
+IDI_ICON1 ICON "assets\\app_icon.ico"
+
+// Version information (optional but recommended)
+1 VERSIONINFO
+FILEVERSION     1,0,0,0
+PRODUCTVERSION  1,0,0,0
+FILEFLAGSMASK   0x3fL
+FILEFLAGS       0x0L
+FILEOS          0x40004L
+FILETYPE        0x1L
+FILESUBTYPE     0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "RSRM"
+            VALUE "FileDescription", "Particle Swarm Optimization Application"
+            VALUE "FileVersion", "1.0.0.0"
+            VALUE "InternalName", "impso"
+            VALUE "LegalCopyright", "Copyright (C) 2025"
+            VALUE "OriginalFilename", "impso.exe"
+            VALUE "ProductName", "Particle Swarm Optimization"
+            VALUE "ProductVersion", "1.0.0.0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
