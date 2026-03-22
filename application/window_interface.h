@@ -10,7 +10,7 @@ class IWindowInterface
     virtual void Create() = 0;
     virtual void Destroy() = 0;
     virtual void DrawContents() = 0;
-    void Render()
+    virtual void Render()
     {
         ImGui::Begin(m_title.c_str(), &m_open, m_flags);
         DrawContents();
