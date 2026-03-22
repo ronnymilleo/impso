@@ -1,6 +1,7 @@
 #include "app_gui.h"
 #include "imgui_layer.h"
 #include "pso_control_window.h"
+#include "about_window.h"
 #include "window_interface.h"
 #include <memory>
 #include <spdlog/spdlog.h>
@@ -23,6 +24,9 @@ int main(int, char**)
     // Create window interfaces
     std::vector<std::unique_ptr<IWindowInterface>> windows;
     windows.push_back(std::make_unique<PSOControlWindow>());
+    
+    auto about_window = new AboutWindow();
+    windows.push_back(std::unique_ptr<IWindowInterface>(about_window));
 
     bool show_demo_window = false; // Set to false by default
     bool show_menu_bar    = true;
@@ -60,7 +64,7 @@ int main(int, char**)
             {
                 if (ImGui::MenuItem("About"))
                 {
-                    spdlog::info("Particle Swarm Optimization v0.1.0");
+                    about_window->Show();
                 }
                 ImGui::EndMenu();
             }

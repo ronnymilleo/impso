@@ -30,6 +30,7 @@ target_link_libraries(app_gui
 add_executable(impso
     ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/pso_control_window.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/about_window.cpp
 )
 
 target_include_directories(impso
