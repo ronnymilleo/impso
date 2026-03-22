@@ -8,11 +8,8 @@
 // Main code
 int main(int, char**)
 {
-    // Create app with title - the icon will be loaded automatically from assets/icon.png
+    // Create app with title
     AppGUI app("Particle Swarm Optimization");
-
-    // Optional: Set a custom icon path if needed
-    // app.SetIcon("assets/icon_64.png");
 
     if (app.Init() != 0)
     {

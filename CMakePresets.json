@@ -16,17 +16,8 @@
       }
     },
     {
-      "name": "default",
-      "displayName": "Default (Auto-detect compiler)",
-      "inherits": "base",
-      "binaryDir": "${sourceDir}/build/default",
-      "cacheVariables": {
-        "CMAKE_BUILD_TYPE": "Debug"
-      }
-    },
-    {
       "name": "debug",
-      "displayName": "Debug (Auto-detect compiler)",
+      "displayName": "Debug (Clang)",
       "inherits": "base",
       "binaryDir": "${sourceDir}/build/debug",
       "cacheVariables": {
@@ -35,7 +26,7 @@
     },
     {
       "name": "release",
-      "displayName": "Release (Auto-detect compiler)",
+      "displayName": "Release (Clang)",
       "inherits": "base",
       "binaryDir": "${sourceDir}/build/release",
       "cacheVariables": {
@@ -43,95 +34,27 @@
       }
     },
     {
-      "name": "gcc-debug",
-      "displayName": "GCC Debug",
+      "name": "debug-tests",
+      "displayName": "Debug with Tests (Clang)",
       "inherits": "base",
+      "binaryDir": "${sourceDir}/build/debug-tests",
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_CXX_COMPILER": "g++",
-        "CMAKE_BUILD_TYPE": "Debug"
-      }
-    },
-    {
-      "name": "gcc-release",
-      "displayName": "GCC Release",
-      "inherits": "base",
-      "cacheVariables": {
-        "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_CXX_COMPILER": "g++",
-        "CMAKE_BUILD_TYPE": "Release"
-      }
-    },
-    {
-      "name": "gcc-debug-tests",
-      "displayName": "GCC Debug with Tests",
-      "inherits": "base",
-      "cacheVariables": {
-        "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_CXX_COMPILER": "g++",
         "CMAKE_BUILD_TYPE": "Debug",
         "PSO_BUILD_TESTS": "ON"
       }
     },
     {
-      "name": "gcc-release-tests",
-      "displayName": "GCC Release with Tests",
+      "name": "release-tests",
+      "displayName": "Release with Tests (Clang)",
       "inherits": "base",
+      "binaryDir": "${sourceDir}/build/release-tests",
       "cacheVariables": {
-        "CMAKE_C_COMPILER": "gcc",
-        "CMAKE_CXX_COMPILER": "g++",
-        "CMAKE_BUILD_TYPE": "Release",
-        "PSO_BUILD_TESTS": "ON"
-      }
-    },
-    {
-      "name": "clang-debug",
-      "displayName": "Clang Debug",
-      "inherits": "base",
-      "cacheVariables": {
-        "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++",
-        "CMAKE_BUILD_TYPE": "Debug"
-      }
-    },
-    {
-      "name": "clang-release",
-      "displayName": "Clang Release",
-      "inherits": "base",
-      "cacheVariables": {
-        "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++",
-        "CMAKE_BUILD_TYPE": "Release"
-      }
-    },
-    {
-      "name": "clang-debug-tests",
-      "displayName": "Clang Debug with Tests",
-      "inherits": "base",
-      "cacheVariables": {
-        "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++",
-        "CMAKE_BUILD_TYPE": "Debug",
-        "PSO_BUILD_TESTS": "ON"
-      }
-    },
-    {
-      "name": "clang-release-tests",
-      "displayName": "Clang Release with Tests",
-      "inherits": "base",
-      "cacheVariables": {
-        "CMAKE_C_COMPILER": "clang",
-        "CMAKE_CXX_COMPILER": "clang++",
         "CMAKE_BUILD_TYPE": "Release",
         "PSO_BUILD_TESTS": "ON"
       }
     }
   ],
   "buildPresets": [
-    {
-      "name": "default",
-      "configurePreset": "default"
-    },
     {
       "name": "debug",
       "configurePreset": "debug"
@@ -141,63 +64,25 @@
       "configurePreset": "release"
     },
     {
-      "name": "gcc-debug",
-      "configurePreset": "gcc-debug"
+      "name": "debug-tests",
+      "configurePreset": "debug-tests"
     },
     {
-      "name": "gcc-release",
-      "configurePreset": "gcc-release"
-    },
-    {
-      "name": "gcc-debug-tests",
-      "configurePreset": "gcc-debug-tests"
-    },
-    {
-      "name": "gcc-release-tests",
-      "configurePreset": "gcc-release-tests"
-    },
-    {
-      "name": "clang-debug",
-      "configurePreset": "clang-debug"
-    },
-    {
-      "name": "clang-release",
-      "configurePreset": "clang-release"
-    },
-    {
-      "name": "clang-debug-tests",
-      "configurePreset": "clang-debug-tests"
-    },
-    {
-      "name": "clang-release-tests",
-      "configurePreset": "clang-release-tests"
+      "name": "release-tests",
+      "configurePreset": "release-tests"
     }
   ],
   "testPresets": [
     {
-      "name": "gcc-debug",
-      "configurePreset": "gcc-debug-tests",
+      "name": "debug-tests",
+      "configurePreset": "debug-tests",
       "output": {
         "outputOnFailure": true
       }
     },
     {
-      "name": "gcc-release",
-      "configurePreset": "gcc-release-tests",
-      "output": {
-        "outputOnFailure": true
-      }
-    },
-    {
-      "name": "clang-debug",
-      "configurePreset": "clang-debug-tests",
-      "output": {
-        "outputOnFailure": true
-      }
-    },
-    {
-      "name": "clang-release",
-      "configurePreset": "clang-release-tests",
+      "name": "release-tests",
+      "configurePreset": "release-tests",
       "output": {
         "outputOnFailure": true
       }

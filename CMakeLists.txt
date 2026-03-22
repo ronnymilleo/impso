@@ -25,6 +25,10 @@ set(CMAKE_CXX_STANDARD 23)  # Adjust as needed (17, 20, 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)  # Disable compiler-specific extensions
 
+if(APPLE)
+    add_compile_definitions(GL_SILENCE_DEPRECATION)
+endif()
+
 # =============================================================================
 # Default Build Type
 # =============================================================================
@@ -40,7 +44,6 @@ endif()
 # =============================================================================
 
 option(PSO_BUILD_TESTS "Build unit tests" ON)
-option(PSO_BUILD_EXAMPLES "Build example programs" ON)
 
 # =============================================================================
 # Compiler Configuration
@@ -51,9 +54,9 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Set output directories for better organization
 string(TOLOWER "${CMAKE_BUILD_TYPE}" BUILD_TYPE_LOWER)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/${BUILD_TYPE_LOWER}/bin")
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/${BUILD_TYPE_LOWER}/lib")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_SOURCE_DIR}/${BUILD_TYPE_LOWER}/lib")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/out/${BUILD_TYPE_LOWER}/bin")
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/out/${BUILD_TYPE_LOWER}/lib")
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/out/${BUILD_TYPE_LOWER}/lib")
 
 # =============================================================================
 # Formatting Target (clang-format)
@@ -73,9 +76,7 @@ if(CLANG_FORMAT)
         ${CMAKE_SOURCE_DIR}/tests/*.cpp
         ${CMAKE_SOURCE_DIR}/tests/*.cc
         ${CMAKE_SOURCE_DIR}/tests/*.c
-        ${CMAKE_SOURCE_DIR}/examples/*.cpp
-        ${CMAKE_SOURCE_DIR}/examples/*.cc
-        ${CMAKE_SOURCE_DIR}/examples/*.c
+
     )
     
     add_custom_target(format
@@ -109,44 +110,7 @@ add_subdirectory(library)
 
 add_subdirectory(application)
 
-# Add Windows resource file for icon on Windows
-if(WIN32)
-    set(WINDOWS_RESOURCES ${CMAKE_SOURCE_DIR}/resources.rc)
-else()
-    set(WINDOWS_RESOURCES "")
-endif()
 
-add_executable(impso
-    ${CMAKE_SOURCE_DIR}/main.cpp
-    ${WINDOWS_RESOURCES}
-)
-
-target_include_directories(impso
-    PRIVATE
-        ${CMAKE_SOURCE_DIR}/application
-        ${CMAKE_SOURCE_DIR}/library/include
-)
-
-target_link_libraries(impso 
-    PRIVATE 
-        app_gui
-)
-
-# Copy assets folder to output directory after build
-add_custom_command(TARGET impso POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_SOURCE_DIR}/assets
-    $<TARGET_FILE_DIR:impso>/assets
-    COMMENT "Copying assets to output directory"
-)
-
-# =============================================================================
-# Examples
-# =============================================================================
-
-if(PSO_BUILD_EXAMPLES)
-    add_subdirectory(examples)
-endif()
 
 # =============================================================================
 # Testing
@@ -181,7 +145,6 @@ message(STATUS "Build type:           ${CMAKE_BUILD_TYPE}")
 message(STATUS "C++ standard:         ${CMAKE_CXX_STANDARD}")
 message(STATUS "Compiler:             ${CMAKE_CXX_COMPILER_ID} ${CMAKE_CXX_COMPILER_VERSION}")
 message(STATUS "Build tests:          ${PSO_BUILD_TESTS}")
-message(STATUS "Build examples:       ${PSO_BUILD_EXAMPLES}")
 message(STATUS "=========================================")
 message(STATUS "")
 

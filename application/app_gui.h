@@ -17,9 +17,6 @@ public:
     void        SwapBuffers();
     GLFWwindow* GetWindow() const;
 
-    // Icon management
-    void SetIcon(const std::string& iconPath);
-
 private:
     GLFWwindow* m_Window       = nullptr;
     GLint       m_Width        = 1280;
@@ -27,8 +24,4 @@ private:
     GLint       m_BufferWidth  = 1280;
     GLint       m_BufferHeight = 720;
     std::string m_Title        = "Digital Control";
-    std::string m_IconPath     = "";
-
-    // Private icon loading method
-    void LoadAndSetIcon();
 };

@@ -5,15 +5,14 @@
 cmake_minimum_required(VERSION 3.28)
 
 add_library(app_gui STATIC
-    ${CMAKE_SOURCE_DIR}/application/app_gui.cpp
-    ${CMAKE_SOURCE_DIR}/application/imgui_layer.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/app_gui.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/imgui_layer.cpp
 )
 
 target_include_directories(app_gui 
     PUBLIC
-        ${CMAKE_SOURCE_DIR}/application
+        ${CMAKE_CURRENT_SOURCE_DIR}
         ${CMAKE_SOURCE_DIR}/library/include
-        ${CMAKE_SOURCE_DIR}/vendor/stb
 )
 
 target_link_libraries(app_gui 
@@ -22,6 +21,27 @@ target_link_libraries(app_gui
         implot
         spdlog
 )
+
+# =============================================================================
+# Main Executable Target
+# =============================================================================
+
+add_executable(impso
+    ${CMAKE_CURRENT_SOURCE_DIR}/main.cpp
+)
+
+target_include_directories(impso
+    PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}
+        ${CMAKE_SOURCE_DIR}/library/include
+)
+
+target_link_libraries(impso 
+    PRIVATE 
+        app_gui
+)
+
+
 
 # =============================================================================
 # End of file
